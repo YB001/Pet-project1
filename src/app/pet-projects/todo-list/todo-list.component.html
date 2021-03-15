@@ -1,6 +1,6 @@
 
 <div class="message__container">
-  <h2 class="text-center m-5">To-do list:</h2>
+  <h2 class="text-center m-5">To-do list</h2>
   <div>{{message}}</div>
   <div>
     <form [formGroup]="todoForm" >
@@ -22,7 +22,6 @@
       </div>
 
       <div class="buttons">
-        <button [ngClass] = "{'btn-danger': m.isLiked}" class="btn btn-primary"(click) = "toggleLike(i)" >Like</button>
         <button [ngClass] = "{'btn-success isDone': m.isDone}" class="btn btn-primary" (click)="toggleDone(i)">Done</button>
         <button [ngClass] = "{'btn-warning isImportant': m.isImportant}" class="btn btn-primary" (click)="toggleImportant(i)">Important</button>
         <button class="btn btn-primary" (click)="deleteMsg(i)">Delete</button>

@@ -1,8 +1,5 @@
 $color_1: white
 $color_2: black
-$color_3: #8E8D8A
-$color_4: #E98074
-$color_5: #E85A4F
 
 body
   background-color: $color_1
@@ -12,9 +9,6 @@ body
   max-width: 950px
   margin: 0 auto
   //border: dashed
-
-
-
 
 .navbar
   height: 50px
@@ -26,7 +20,9 @@ body
 .logo
   width: 50%
   height: 35px
-  background: url("./img/shark_logo.png") no-repeat
+  &:active,:focus
+    outline: 0
+    outline-offset: 0
 
 .menu
   width: 50%
@@ -35,7 +31,6 @@ body
   padding: 0
   margin: 0 auto
   list-style-type: none
-  &__item
   &__link
     color: $color_2
     font-size: 17px
