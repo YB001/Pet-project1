@@ -1,0 +1,94 @@
+<link rel="stylesheet" href="form-validation.component.sass">
+<div class="h2 text-center m-5">Form validation</div>
+
+<div class="text-center m-3">Заполни все формы, чтобы увидеть котика!</div>
+
+<!--<pre>{{form.get('mathematic').errors | json}}</pre>-->
+<!--<pre>{{form.get('password').errors | json}}</pre>-->
+
+
+
+<div>
+  <form [formGroup]="form">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        formControlName="email"
+      >
+      <div
+        *ngIf="form.get('email').invalid && form.get('email').touched"
+        class="validation"
+      >
+        <small *ngIf="form.get('email').errors.required">
+          Поле email не может быть пустым
+        </small>
+        <small *ngIf="form.get('email').errors.email">
+          Введите корректный email
+        </small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="exampleInputPassword1"
+        formControlName="password"
+      >
+      <div
+        *ngIf="form.get('password').invalid && form.get('password').touched"
+        class="validation"
+      >
+        <small *ngIf="form.get('password').errors.required">
+          Пароль не может быть пустым
+        </small>
+        <small *ngIf="form.get('password').errors.minlength">
+          Недостаточная длина пароля. Введите еще {{form.get('password').errors.minlength.requiredLength - form.get('password').errors.minlength.actualLength}} символов
+        </small>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Испытание математикой: сколько будет 2+2*2 ?</label>
+      <input
+        type="mathematic"
+        class="form-control"
+        id="mathematic"
+        formControlName="mathematic"
+      >
+      <div
+        *ngIf="form.get('mathematic').invalid && form.get('mathematic').touched"
+        class="validation"
+      >
+        <small *ngIf="form.get('mathematic').errors.required">
+          Ты сможешь - ты же умный!
+        </small>
+      </div>
+    </div>
+
+    <div class="mb-3 form-check">
+      <input
+        type="checkbox"
+        class="form-check-input"
+        id="exampleCheck1"
+        formControlName="checkbox"
+      >
+      <label class="form-check-label" for="exampleCheck1">Поставь галочку ради котика!</label >
+    </div>
+
+    <div *ngIf="!form.invalid">
+      Тебе дозволено увидеть котика!!!
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid" (click)="canShowKitty = !canShowKitty">Хочу увидеть котика!</button>
+  </form>
+</div>
+
+<div *ngIf="canShowKitty">
+  <img src="https://pixabay.com/get/ge7e690aa7b8f2733d512908b47e8323f64e45769ff43869dc522d0ac8abdb7ed45e1c6728aac998307ae245954459ea6df2d2da5d2cd127319ee3b39527c18a7_1280.jpg" class="img-fluid" alt="...">
+</div>

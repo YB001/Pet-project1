@@ -1,0 +1,22 @@
+
+<h2 class="text-center m-5">Image search</h2>
+
+<app-form
+  (onAdd)="updateData($event)"
+></app-form>
+
+<div *ngIf="!loading; else loadingBlock" class="container">
+  <div *ngIf="imgsInfo.total; else noImgsBlock" class="row">
+    <div class="box" *ngFor="let img of imgsInfo.hits">
+      <img class="img-thumbnail" src="{{img.previewURL}}" [id]="img.id" (click)="showLarge(img.id)">
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingBlock >
+  <p class="msg">Loading...</p>
+</ng-template>
+
+<ng-template #noImgsBlock>
+  <p class="msg">There are no images that suits your criteria</p>
+</ng-template>

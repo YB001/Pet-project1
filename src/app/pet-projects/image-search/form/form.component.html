@@ -1,0 +1,21 @@
+
+<div>
+  <form [formGroup]="form" class="head"  (input)="submit()">
+    <div class="input_box">
+      <input type="text"
+             placeholder="Type to search"
+             formControlName="searchField">
+    </div>
+
+    <div>
+      <label>Set images per page:</label>
+
+      <select formControlName="perPages">
+        <option *ngFor="let pages of pagesNum" [value]='pages'>
+          {{pages}}
+        </option>
+      </select>
+
+    </div>
+  </form>
+</div>

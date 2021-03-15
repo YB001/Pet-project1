@@ -1,0 +1,35 @@
+
+<div class="message__container">
+  <h2 class="text-center m-5">To-do list:</h2>
+  <div>{{message}}</div>
+  <div>
+    <form [formGroup]="todoForm" >
+      <input type="text" placeholder="Type something" formControlName="inputField" />
+      <button class="btn btn-primary" (click)="submit()" [disabled]="todoForm.invalid">
+        send
+      </button>
+    </form>
+  </div>
+
+  <div  *ngFor="let m of arr; index as i">
+    <div>
+      <div
+        [ngClass] = "{
+          isDone: m.isDone,
+          isImportant: m.isImportant}"
+         class="message">
+        {{m.text}}
+      </div>
+
+      <div class="buttons">
+        <button [ngClass] = "{'btn-danger': m.isLiked}" class="btn btn-primary"(click) = "toggleLike(i)" >Like</button>
+        <button [ngClass] = "{'btn-success isDone': m.isDone}" class="btn btn-primary" (click)="toggleDone(i)">Done</button>
+        <button [ngClass] = "{'btn-warning isImportant': m.isImportant}" class="btn btn-primary" (click)="toggleImportant(i)">Important</button>
+        <button class="btn btn-primary" (click)="deleteMsg(i)">Delete</button>
+      </div>
+
+      <small class="message__date"> Posted: {{m.postDate | date:'fullTime'}}</small>
+    </div>
+  </div>
+</div>
+
